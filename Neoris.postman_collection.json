@@ -1,9 +1,8 @@
 {
 	"info": {
 		"_postman_id": "19e07531-1854-43b8-993b-bf23e209342a",
-		"name": "Neoris",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8453225"
+		"name": "challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -13,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"number\": \"5854521452\",\n    \"type\": \"Ahorros\",\n    \"balance\": 200,\n    \"status\": true,\n    \"clientId\": 1\n}",
+					"raw": "{\n    \"number\": \"232323542\",\n    \"type\": \"Corriente\",\n    \"balance\": 5000,\n    \"status\": true,\n    \"clientId\": \"1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -45,7 +44,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"number\": \"5854521452\",\n    \"type\": \"Ahorros\"\n}",
+					"raw": "{\n    \"number\": \"478758333\",\n    \"type\": \"Ahorro\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -132,7 +131,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Jose Lemar Cuspoca\",\n    \"address\": \"Otavalo sn y principal\",\n    \"phone\": \"098254785\",\n    \"password\": \"12345\"\n}",
+					"raw": "{\n    \"name\": \"Jose Lemar Cuspoca\",\n    \"address\": \"Otavalo sn y principal\",\n    \"phone\": \"0982547853\",\n    \"password\": \"12345\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

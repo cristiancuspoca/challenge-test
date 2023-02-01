@@ -15,7 +15,7 @@ public class AccountController implements AccountResource {
     private AccountService accountService;
 
     @Autowired
-    DTOMapper dtoMapper;
+    private DTOMapper dtoMapper;
 
     @Override
     public AccountDTO getAccount(Integer accountId) {
@@ -26,23 +26,13 @@ public class AccountController implements AccountResource {
 
     @Override
     public void updateAccount(Integer accountId, AccountDTO account) {
-        Account updateAccount = new Account();
-        updateAccount.setNumber(account.getNumber());
-        updateAccount.setType(account.getType());
-        updateAccount.setBalance(account.getBalance());
-        updateAccount.setStatus(account.getStatus());
-        updateAccount.setClientId(account.getClientId());
+        Account updateAccount = dtoMapper.map(account, Account.class);
         accountService.updateAccount(accountId, updateAccount);
     }
 
     @Override
     public void createAccount(AccountDTO account) {
-        Account newAccount = new Account();
-        newAccount.setNumber(account.getNumber());
-        newAccount.setType(account.getType());
-        newAccount.setBalance(account.getBalance());
-        newAccount.setStatus(account.getStatus());
-        newAccount.setClientId(account.getClientId());
+        Account newAccount = dtoMapper.map(account, Account.class);
         accountService.createAccount(newAccount);
     }
 
