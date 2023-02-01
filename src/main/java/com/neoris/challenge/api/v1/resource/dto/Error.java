@@ -30,6 +30,13 @@ public class Error {
         this.message = message;
     }
 
+    public Error(HttpStatus status, String message, String debugMessage) {
+        this();
+        this.status = status;
+        this.message = message;
+        this.debugMessage = debugMessage;
+    }
+
     public Error(HttpStatus status, String message, Throwable ex) {
         this();
         this.status = status;

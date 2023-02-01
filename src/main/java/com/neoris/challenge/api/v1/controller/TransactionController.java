@@ -5,13 +5,11 @@ import com.neoris.challenge.api.v1.resource.mapper.DTOMapper;
 import com.neoris.challenge.api.v1.resource.dto.TransactionDTO;
 import com.neoris.challenge.api.v1.resource.TransactionResource;
 import com.neoris.challenge.api.v1.service.TransactionService;
-import com.neoris.challenge.api.v1.service.model.SummaryTransaction;
 import com.neoris.challenge.api.v1.service.model.Transaction;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,10 +17,10 @@ import java.util.stream.Collectors;
 public class TransactionController implements TransactionResource {
 
     @Autowired
-    TransactionService transactionService;
+    private TransactionService transactionService;
 
     @Autowired
-    DTOMapper dtoMapper;
+    private DTOMapper dtoMapper;
 
     @Override
     public TransactionDTO getTransaction(Integer transactionId) {
@@ -33,11 +31,7 @@ public class TransactionController implements TransactionResource {
 
     @Override
     public void createTransaction(@NotNull TransactionDTO transaction) {
-        Transaction newTransaction = new Transaction();
-        newTransaction.setClientId(transaction.getClientId());
-        newTransaction.setAccountId(transaction.getAccountId());
-        newTransaction.setAmount(transaction.getAmount());
-        newTransaction.setType(transaction.getType());
+        Transaction newTransaction = dtoMapper.map(transaction, Transaction.class);
         transactionService.createTransaction(newTransaction);
     }
 
@@ -50,15 +44,7 @@ public class TransactionController implements TransactionResource {
     public List<SummaryTransactionDTO> getSummaryTransactions(int clientId, String initDate, String endDate) {
         return transactionService.getSummaryTransactions(clientId, initDate, endDate)
                 .stream()
-                .map(transaction -> {
-                    SummaryTransactionDTO summary = new SummaryTransactionDTO();
-                    summary.setDate(transaction.getDate());
-                    summary.setBalance(transaction.getBalance());
-                    summary.setStatus(transaction.getStatus());
-                    summary.setClientName(transaction.getClientName());
-                    summary.setNumberAccount(transaction.getNumberAccount());
-                    summary.setTypeAccount(transaction.getTypeAccount());
-                    return summary;
-                }).collect(Collectors.toList());
+                .map(transaction -> dtoMapper.map(transaction, SummaryTransactionDTO.class))
+                .collect(Collectors.toList());
     }
 }

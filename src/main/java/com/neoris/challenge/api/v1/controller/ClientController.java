@@ -15,7 +15,7 @@ public class ClientController implements ClientResource {
     private ClientService clientService;
 
     @Autowired
-    DTOMapper dtoMapper;
+    private DTOMapper dtoMapper;
 
     @Override
     public ClientDTO getClient(Integer clientId) {
@@ -26,27 +26,13 @@ public class ClientController implements ClientResource {
 
     @Override
     public void updateClient(Integer clientId, ClientDTO client) {
-        Client newClient = new Client();
-        newClient.setName(client.getName());
-        newClient.setAge(client.getAge());
-        newClient.setGender(client.getGender());
-        newClient.setAddress(client.getAddress());
-        newClient.setIdentification(client.getIdentification());
-        newClient.setPassword(client.getPassword());
-        newClient.setStatus(client.getStatus());
-        clientService.updateClient(clientId, newClient);
+        Client updateClient = dtoMapper.map(client, Client.class);
+        clientService.updateClient(clientId, updateClient);
     }
 
     @Override
     public void createClient(ClientDTO client) {
-        Client newClient = new Client();
-        newClient.setName(client.getName());
-        newClient.setAge(client.getAge());
-        newClient.setGender(client.getGender());
-        newClient.setAddress(client.getAddress());
-        newClient.setIdentification(client.getIdentification());
-        newClient.setPassword(client.getPassword());
-        newClient.setStatus(client.getStatus());
+        Client newClient = dtoMapper.map(client, Client.class);
         clientService.createClient(newClient);
     }
 
